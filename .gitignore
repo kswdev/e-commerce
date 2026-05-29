@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/sb-admin-2-react/node_modules
+/sb-admin-2-react/node_modules/
 /sb-admin-2-react/yarn.lock
 /.pnp
 .pnp.js
