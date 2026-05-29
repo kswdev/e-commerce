@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+sb-admin-2-react/node_modules
+sb-admin-2-react/yarn.lock
 /.pnp
 .pnp.js
 
@@ -21,7 +22,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
+
 
 # Intellij
 .idea
