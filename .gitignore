@@ -26,3 +26,7 @@ yarn-error.log*
 
 # Intellij
 .idea
+
+# npm
+sb-admin-2-react/dist/
+sb-admin-2-react/package-lock.json
