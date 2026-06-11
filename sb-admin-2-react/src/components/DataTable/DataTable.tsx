@@ -4,9 +4,11 @@ import {useDataTable} from "../../hooks/useDataTable.ts";
 const DataTable = <T,>({
     data,
     columns,
+    onRowClick,
 } : {
     data: T[];
     columns: ColumnDef<T, any>[];
+    onRowClick?: (row: T) => void;
 }) => {
     const {table, globalFilter, setGlobalFilter} = useDataTable({
         data,
@@ -17,6 +19,8 @@ const DataTable = <T,>({
     const {pageIndex, pageSize} = table.getState().pagination;
     const totalRows = table.getFilteredRowModel().rows.length;
 
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className="table-wrapper">
             {/* 검색 바 */}
@@ -60,7 +64,9 @@ const DataTable = <T,>({
                         </tr>
                     ) : (
                         table.getRowModel().rows.map((row) => (
-                            <tr key={row.id} className="data-row">
+                            <tr key={row.id}
+                                onClick={() => onRowClick?.(row.original)}
+                                className="data-row">
                                 {row.getVisibleCells().map((cell) => (
                                     <td key={cell.id}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}

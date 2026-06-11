@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-class NotFound extends Component<RouteComponentProps> {
-  render() {
+const NotFound = () => {
     return (
       <div id="content">
         <div className="container-fluid">
@@ -15,7 +13,6 @@ class NotFound extends Component<RouteComponentProps> {
         </div>
       </div>
     );
-  }
 }
 
-export default withRouter(NotFound);
+export default NotFound;

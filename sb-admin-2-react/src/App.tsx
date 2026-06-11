@@ -1,5 +1,5 @@
 import React from "react";
-import Routes from "./routes";
+import AppRoutes from "./routes.tsx";
 
-const App: React.FC = () => <Routes />;
+const App: React.FC = () => <AppRoutes />;
 export default App;

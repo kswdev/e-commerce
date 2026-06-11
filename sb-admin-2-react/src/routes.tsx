@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Pages
 import SignUp from "./pages/SignUp";
@@ -12,20 +12,20 @@ import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 import Users from "./pages/Users";
 
-const Routes: React.FC = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={SignIn} />
-      <Route exact path="/dashboard" component={Dashboard} />
-      <Route path="/signup" component={SignUp} />
-      <Route path="/cards" component={Cards} />
-      <Route path="/charts" component={Charts} />
-      <Route path="/products" component={Products} />
-      <Route path="/orders" component={Orders} />
-      <Route path="/users" component={Users} />
-      <Route path="*" component={NotFound} />
-    </Switch>
-  </BrowserRouter>
+const AppRoutes: React.FC = () => (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/cards" element={<Cards />} />
+        <Route path="/charts" element={<Charts />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
 );
 
-export default Routes;
+export default AppRoutes;
