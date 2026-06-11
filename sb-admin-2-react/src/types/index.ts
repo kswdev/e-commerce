@@ -25,3 +25,9 @@ export interface Order {
   paymentMethod: string;
   orderDate: number;
 }
+
+export interface RootState {
+  menuState: {
+    menuOpen: boolean;
+  };
+}

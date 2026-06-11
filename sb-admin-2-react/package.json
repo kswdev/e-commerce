@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-table": "^8.11.0",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "jquery": "^3.4.1",
     "lodash.template": "^4.5.0",
     "mixin-deep": "^2.0.1",
-    "sass": "1.49.9",
     "popper.js": "^1.15.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "set-value": "^3.0.1",
-    "@tanstack/react-table": "^8.11.0"
+    "sass": "1.49.9",
+    "set-value": "^3.0.1"
   },
   "scripts": {
     "start": "vite",
@@ -23,6 +23,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/react": "^16.14.70",
+    "@types/react-dom": "^16.9.25",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.2.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
