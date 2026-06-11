@@ -16,3 +16,12 @@ export interface Product {
   createdAt: string;
   remnant: number;
 }
+
+export interface Order {
+  id: number;
+  orderer: string;
+  price: number;
+  status: string;
+  paymentMethod: string;
+  orderDate: number;
+}

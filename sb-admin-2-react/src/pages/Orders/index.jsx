@@ -5,10 +5,10 @@ import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
 import PageHeading from "../../components/PageHeading";
 import DataTable from "../../components/DataTable/DataTable.tsx";
-import { productColumns } from "../../components/DataTable/columns.tsx";
-import { products } from "../../data/products.ts";
+import { orderColumns } from "../../components/DataTable/columns.tsx";
+import { orders } from "../../data/orders.ts";
 
-export default class Products extends Component {
+export default class Orders extends Component {
 
     componentWillMount() {
         document.getElementById('body').className = 'page-top'
@@ -34,16 +34,15 @@ export default class Products extends Component {
                             <div className="container-fluid">
 
                                 {/* <!-- Page Heading --> */}
+                                <PageHeading title="주문 관리" />
 
-                                <PageHeading title="상품 관리" />
-
-                                {/* <!-- DataTales Example --> */}
+                                {/* <!-- DataTable --> */}
                                 <div className="card shadow mb-4">
                                     <div className="card-header py-3">
-                                        <h6 className="m-0 font-weight-bold text-primary">상품 목록</h6>
+                                        <h6 className="m-0 font-weight-bold text-primary">주문 목록</h6>
                                     </div>
                                     <div className="card-body">
-                                        <DataTable data={products} columns={productColumns} />
+                                        <DataTable data={orders} columns={orderColumns} />
                                     </div>
                                 </div>
                             </div>

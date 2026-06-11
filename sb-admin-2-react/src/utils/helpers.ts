@@ -29,3 +29,26 @@ export function getScoreColor(score: number): string {
   if (score >= 70) return "score-mid";
   return "score-low";
 }
+
+export function formatTimestamp(ts: number): string {
+  return new Date(ts).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+export function getOrderStatusStyle(status: string): string {
+  const styles: Record<string, string> = {
+    주문완료: "status-badge status-pending",
+    배송중:   "status-badge status-active",
+    배송완료: "status-badge score-high",
+    취소:     "status-badge status-inactive",
+    환불:     "status-badge status-inactive",
+  };
+  return styles[status] ?? "status-badge";
+}
+
+export function formatPrice(price: number): string {
+  return price.toLocaleString("ko-KR") + "원";
+}

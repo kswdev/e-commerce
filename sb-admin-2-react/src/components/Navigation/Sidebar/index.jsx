@@ -62,7 +62,7 @@ class Sidebar extends Component {
                 <hr className="sidebar-divider"/>
 
                 <li className="nav-item">
-                    <Link className="nav-link" to="/dashboard">
+                    <Link className="nav-link" to="/orders">
                         <i className="fas fa-fw fa-shopping-cart"></i>
                         <span>주문관리</span>
                     </Link>

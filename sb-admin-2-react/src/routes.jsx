@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Cards from "./pages/Cards";
 import Charts from "./pages/Charts";
 import Products from "./pages/Products";
+import Orders from "./pages/Orders";
 
 
 const Routes = () => (
@@ -21,6 +22,7 @@ const Routes = () => (
             <Route path="/cards" component={Cards} />
             <Route path="/charts" component={Charts} />
             <Route path="/products" component={Products} />
+            <Route path="/orders" component={Orders} />
             <Route path="*" component={NotFound} />
         </Switch>
     </BrowserRouter>

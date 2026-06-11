@@ -1,17 +1,16 @@
 import {ColumnDef, flexRender} from "@tanstack/react-table";
 import {useDataTable} from "../../hooks/useDataTable.ts";
-import {productColumns} from "./columns.tsx";
-import {products} from "../../data/products.ts";
-import {Product} from "../../types";
 
-const DataTable = ({
-    columns = productColumns,
+const DataTable = <T,>({
+    data,
+    columns,
 } : {
-    columns : ColumnDef<Product, any>[]
+    data: T[];
+    columns: ColumnDef<T, any>[];
 }) => {
     const {table, globalFilter, setGlobalFilter} = useDataTable({
-        data: products,
-        columns: columns,
+        data,
+        columns,
         pageSize: 5,
     });
 
@@ -55,7 +54,7 @@ const DataTable = ({
                     <tbody>
                     {table.getRowModel().rows.length === 0 ? (
                         <tr>
-                            <td colSpan={productColumns.length} className="empty-cell">
+                            <td colSpan={columns.length} className="empty-cell">
                                 검색 결과가 없습니다.
                             </td>
                         </tr>
