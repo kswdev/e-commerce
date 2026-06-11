@@ -3,7 +3,7 @@ import Sidebar from "../../components/Navigation/Sidebar";
 import Topbar from "../../components/Navigation/Topbar";
 import PageHeading from "../../components/PageHeading";
 
-const Blank = () => {
+const ProductDetail = () => {
 
     return (
         <div>
@@ -13,10 +13,10 @@ const Blank = () => {
                     <div id="content">
                         <Topbar />
                         <div className="container-fluid">
-                            <PageHeading title="Blank" />
+                            <PageHeading title="제품 상세 페이지" />
                             <div className="card shadow mb-4">
                                 <div className="card-header py-3">
-                                    <h6 className="m-0 font-weight-bold text-primary">Blank</h6>
+                                    <h6 className="m-0 font-weight-bold text-primary">준비중입니다...</h6>
                                 </div>
                             </div>
                         </div>
@@ -27,4 +27,4 @@ const Blank = () => {
     );
 }
 
-export default Blank;
+export default ProductDetail;
