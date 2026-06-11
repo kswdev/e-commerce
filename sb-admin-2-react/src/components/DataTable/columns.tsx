@@ -1,27 +1,27 @@
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import { User } from "../../types";
+import {Product, User} from "../../types";
 import { formatDate, getStatusStyle, getStatusLabel, getScoreColor } from "../../utils/helpers.ts";
 
-const columnHelper = createColumnHelper<User>();
+const userColumnHelper = createColumnHelper<User>();
 
 export const userColumns: ColumnDef<User, any>[] = [
-  columnHelper.accessor("id", {
+  userColumnHelper.accessor("id", {
     header: "ID",
     cell: (info) => `#${info.getValue()}`,
     size: 60,
   }),
-  columnHelper.accessor("name", {
+  userColumnHelper.accessor("name", {
     header: "이름",
     cell: (info) => <strong>{info.getValue()}</strong>,
   }),
-  columnHelper.accessor("email", {
+  userColumnHelper.accessor("email", {
     header: "이메일",
     cell: (info) => <span className="email-cell">{info.getValue()}</span>,
   }),
-  columnHelper.accessor("role", {
+  userColumnHelper.accessor("role", {
     header: "역할",
   }),
-  columnHelper.accessor("status", {
+  userColumnHelper.accessor("status", {
     header: "상태",
     cell: (info) => (
       <span className={getStatusStyle(info.getValue())}>
@@ -29,16 +29,46 @@ export const userColumns: ColumnDef<User, any>[] = [
       </span>
     ),
   }),
-  columnHelper.accessor("joinDate", {
+  userColumnHelper.accessor("joinDate", {
     header: "가입일",
     cell: (info) => formatDate(info.getValue()),
   }),
-  columnHelper.accessor("score", {
+  userColumnHelper.accessor("score", {
     header: "점수",
     cell: (info) => (
       <span className={`score-badge ${getScoreColor(info.getValue())}`}>
         {info.getValue()}
       </span>
     ),
+  }),
+];
+
+const productColumnHelper = createColumnHelper<Product>();
+
+export const productColumns: ColumnDef<Product, any>[] = [
+  productColumnHelper.accessor("id", {
+    header: "ID",
+    cell: (info) => `#${info.getValue()}`,
+    size: 60,
+  }),
+  productColumnHelper.accessor("name", {
+    header: "이름",
+    cell: (info) => <strong>{info.getValue()}</strong>,
+  }),
+  productColumnHelper.accessor("price", {
+    header: "가격",
+    cell: (info) => info.getValue(),
+  }),
+  productColumnHelper.accessor("company", {
+    header: "업체",
+    cell: (info) => info.getValue(),
+  }),
+  productColumnHelper.accessor("createdAt", {
+    header: "등록일",
+    cell: (info) => formatDate(info.getValue()),
+  }),
+  productColumnHelper.accessor("remnant", {
+    header: "재고",
+    cell: (info) => info.getValue(),
   }),
 ];

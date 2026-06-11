@@ -1,12 +1,17 @@
-import {flexRender} from "@tanstack/react-table";
+import {ColumnDef, flexRender} from "@tanstack/react-table";
 import {useDataTable} from "../../hooks/useDataTable.ts";
-import {userColumns} from "./columns.tsx";
-import {users} from "../../data/users.ts";
+import {productColumns} from "./columns.tsx";
+import {products} from "../../data/products.ts";
+import {Product} from "../../types";
 
-export default function DataTable() {
+const DataTable = ({
+    columns = productColumns,
+} : {
+    columns : ColumnDef<Product, any>[]
+}) => {
     const {table, globalFilter, setGlobalFilter} = useDataTable({
-        data: users,
-        columns: userColumns,
+        data: products,
+        columns: columns,
         pageSize: 5,
     });
 
@@ -17,12 +22,10 @@ export default function DataTable() {
         <div className="table-wrapper">
             {/* 검색 바 */}
             <div className="table-toolbar">
-                <h2 className="table-title">사용자 목록</h2>
                 <input
                     className="search-input"
                     value={globalFilter}
                     onChange={(e) => setGlobalFilter(e.target.value)}
-                    placeholder="이름, 이메일, 역할 검색..."
                 />
             </div>
 
@@ -52,7 +55,7 @@ export default function DataTable() {
                     <tbody>
                     {table.getRowModel().rows.length === 0 ? (
                         <tr>
-                            <td colSpan={userColumns.length} className="empty-cell">
+                            <td colSpan={productColumns.length} className="empty-cell">
                                 검색 결과가 없습니다.
                             </td>
                         </tr>
@@ -98,3 +101,5 @@ export default function DataTable() {
         </div>
     );
 }
+
+export default DataTable;

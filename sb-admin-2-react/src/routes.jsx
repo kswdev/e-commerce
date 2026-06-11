@@ -9,7 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Cards from "./pages/Cards";
 import Charts from "./pages/Charts";
-import Tables from "./pages/Tables";
+import Products from "./pages/Products";
 
 
 const Routes = () => (
@@ -20,7 +20,7 @@ const Routes = () => (
             <Route path="/signup" component={SignUp} />
             <Route path="/cards" component={Cards} />
             <Route path="/charts" component={Charts} />
-            <Route path="/tables" component={Tables} />
+            <Route path="/products" component={Products} />
             <Route path="*" component={NotFound} />
         </Switch>
     </BrowserRouter>

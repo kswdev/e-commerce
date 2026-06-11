@@ -7,3 +7,12 @@ export interface User {
   joinDate: string;
   score: number;
 }
+
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  company: string;
+  createdAt: string;
+  remnant: number;
+}
