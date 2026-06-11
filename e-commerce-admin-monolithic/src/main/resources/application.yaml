@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: e-commerce-admin-monolithic
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/ecommerce_monolithic?useSSL=false?CharacterEncoding=UTF-8?serverTimezone=UTC
+    username: app
+    password: app123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    root: info
+
+server:
+  port: 8081
