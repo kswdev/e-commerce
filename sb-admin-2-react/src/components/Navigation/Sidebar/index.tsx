@@ -65,7 +65,7 @@ class Sidebar extends Component<Props> {
         <hr className="sidebar-divider" />
 
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
+          <Link className="nav-link" to="/users">
             <i className="fas fa-fw fa-user"></i>
             <span>고객관리</span>
           </Link>

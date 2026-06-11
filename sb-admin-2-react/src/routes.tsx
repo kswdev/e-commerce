@@ -10,6 +10,7 @@ import Cards from "./pages/Cards";
 import Charts from "./pages/Charts";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
+import Users from "./pages/Users";
 
 const Routes: React.FC = () => (
   <BrowserRouter>
@@ -21,6 +22,7 @@ const Routes: React.FC = () => (
       <Route path="/charts" component={Charts} />
       <Route path="/products" component={Products} />
       <Route path="/orders" component={Orders} />
+      <Route path="/users" component={Users} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
