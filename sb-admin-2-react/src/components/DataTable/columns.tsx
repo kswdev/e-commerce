@@ -1,45 +1,42 @@
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import {Order, Product, User} from "../../types";
-import { formatDate, getStatusStyle, getStatusLabel, getScoreColor, formatTimestamp, getOrderStatusStyle, formatPrice } from "../../utils/helpers.ts";
+import {Customer, Order, Product} from "../../types";
+import { formatDate, formatTimestamp, getOrderStatusStyle, formatPrice } from "../../utils/helpers.ts";
 
-const userColumnHelper = createColumnHelper<User>();
+const customerColumnHelper = createColumnHelper<Customer>();
 
-export const userColumns: ColumnDef<User, any>[] = [
-  userColumnHelper.accessor("id", {
+export const customerColumns: ColumnDef<Customer, any>[] = [
+  customerColumnHelper.accessor("customerId", {
     header: "ID",
     cell: (info) => `#${info.getValue()}`,
     size: 60,
   }),
-  userColumnHelper.accessor("name", {
+  customerColumnHelper.accessor("customerName", {
     header: "이름",
     cell: (info) => <strong>{info.getValue()}</strong>,
   }),
-  userColumnHelper.accessor("email", {
-    header: "이메일",
-    cell: (info) => <span className="email-cell">{info.getValue()}</span>,
+  customerColumnHelper.accessor("age", {
+    header: "나이",
+    cell: (info) => `${info.getValue()}세`,
   }),
-  userColumnHelper.accessor("role", {
-    header: "역할",
+  customerColumnHelper.accessor("phoneNumber", {
+    header: "전화번호",
+    cell: (info) => info.getValue(),
   }),
-  userColumnHelper.accessor("status", {
-    header: "상태",
+  customerColumnHelper.accessor("address", {
+    header: "주소",
+    cell: (info) => info.getValue(),
+  }),
+  customerColumnHelper.accessor("grade", {
+    header: "등급",
     cell: (info) => (
-      <span className={getStatusStyle(info.getValue())}>
-        {getStatusLabel(info.getValue())}
-      </span>
-    ),
-  }),
-  userColumnHelper.accessor("joinDate", {
-    header: "가입일",
-    cell: (info) => formatDate(info.getValue()),
-  }),
-  userColumnHelper.accessor("score", {
-    header: "점수",
-    cell: (info) => (
-      <span className={`score-badge ${getScoreColor(info.getValue())}`}>
+      <span className={info.getValue() === "VIP" ? "badge badge-warning" : "badge badge-secondary"}>
         {info.getValue()}
       </span>
     ),
+  }),
+  customerColumnHelper.accessor("createdAt", {
+    header: "가입일",
+    cell: (info) => formatDate(info.getValue()),
   }),
 ];
 

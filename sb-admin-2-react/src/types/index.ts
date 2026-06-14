@@ -1,11 +1,13 @@
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  status: "active" | "inactive" | "pending";
-  joinDate: string;
-  score: number;
+export interface Customer {
+  customerId: number;
+  customerName: string;
+  age: number;
+  phoneNumber: string;
+  address: string;
+  grade: "BASIC" | "VIP";
+  deleted: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Product {
