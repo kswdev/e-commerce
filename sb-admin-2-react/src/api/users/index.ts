@@ -1,5 +1,7 @@
 import axiosInstance from '../axiosInstance';
-import { Customer } from '../../types';
+import { Customer, PageResponse } from '../../types';
 
-export const getCustomers = () =>
-    axiosInstance.get<Customer[]>('/customers').then((res) => res.data);
+export const getCustomers = (page: number, size: number) =>
+    axiosInstance
+        .get<PageResponse<Customer>>('/customers', { params: { page, size } })
+        .then((res) => res.data);

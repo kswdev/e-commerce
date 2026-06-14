@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
 import PageHeading from '../../components/PageHeading';
@@ -9,6 +9,10 @@ import { getCustomers } from '../../api/users';
 
 const Users = () => {
     const [customers, setCustomers] = useState<Customer[]>([]);
+    const [pageIndex, setPageIndex] = useState(0);
+    const [pageSize, setPageSize] = useState(5);
+    const [totalElements, setTotalElements] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -17,10 +21,20 @@ const Users = () => {
     });
 
     useEffect(() => {
-        getCustomers()
-            .then(setCustomers)
+        setLoading(true);
+        getCustomers(pageIndex, pageSize)
+            .then((page) => {
+                setCustomers(page.content);
+                setTotalElements(page.totalElements);
+                setTotalPages(page.totalPages);
+            })
             .catch((err) => setError(err.message))
             .finally(() => setLoading(false));
+    }, [pageIndex, pageSize]);
+
+    const handlePaginationChange = useCallback((page: number, size: number) => {
+        setPageIndex(page);
+        setPageSize(size);
     }, []);
 
     return (
@@ -40,7 +54,17 @@ const Users = () => {
                                     {loading && <p>로딩 중...</p>}
                                     {error && <p className="text-danger">{error}</p>}
                                     {!loading && !error && (
-                                        <DataTable data={customers} columns={customerColumns}/>
+                                        <DataTable
+                                            data={customers}
+                                            columns={customerColumns}
+                                            serverPagination={{
+                                                pageIndex,
+                                                pageSize,
+                                                pageCount: totalPages,
+                                                totalElements,
+                                                onPaginationChange: handlePaginationChange,
+                                            }}
+                                        />
                                     )}
                                 </div>
                             </div>
@@ -50,6 +74,6 @@ const Users = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Users;

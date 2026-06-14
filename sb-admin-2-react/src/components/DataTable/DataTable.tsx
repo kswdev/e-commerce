@@ -1,26 +1,37 @@
-import {ColumnDef, flexRender} from "@tanstack/react-table";
-import {useDataTable} from "../../hooks/useDataTable.ts";
+import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { useDataTable } from "../../hooks/useDataTable.ts";
+
+interface ServerPagination {
+    pageIndex: number;
+    pageSize: number;
+    pageCount: number;
+    totalElements: number;
+    onPaginationChange: (page: number, size: number) => void;
+}
 
 const DataTable = <T,>({
     data,
     columns,
     onRowClick,
-} : {
+    serverPagination,
+}: {
     data: T[];
     columns: ColumnDef<T, any>[];
     onRowClick?: (row: T) => void;
+    serverPagination?: ServerPagination;
 }) => {
-    const {table, globalFilter, setGlobalFilter} = useDataTable({
+    const { table, globalFilter, setGlobalFilter } = useDataTable({
         data,
         columns,
         pageSize: 5,
+        serverPagination,
     });
 
-    const {pageIndex, pageSize} = table.getState().pagination;
-    const totalRows = table.getFilteredRowModel().rows.length;
+    const { pageIndex, pageSize } = table.getState().pagination;
+    const totalRows = serverPagination
+        ? serverPagination.totalElements
+        : table.getFilteredRowModel().rows.length;
 
-    // @ts-ignore
-    // @ts-ignore
     return (
         <div className="table-wrapper">
             {/* 검색 바 */}
@@ -64,9 +75,11 @@ const DataTable = <T,>({
                         </tr>
                     ) : (
                         table.getRowModel().rows.map((row) => (
-                            <tr key={row.id}
+                            <tr
+                                key={row.id}
                                 onClick={() => onRowClick?.(row.original)}
-                                className="data-row">
+                                className="data-row"
+                            >
                                 {row.getVisibleCells().map((cell) => (
                                     <td key={cell.id}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -89,8 +102,10 @@ const DataTable = <T,>({
                     <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>‹</button>
                     <span className="page-indicator">{pageIndex + 1} / {table.getPageCount()}</span>
                     <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>›</button>
-                    <button onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                            disabled={!table.getCanNextPage()}>»
+                    <button
+                        onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                        disabled={!table.getCanNextPage()}
+                    >»
                     </button>
                 </div>
                 <select
@@ -105,6 +120,6 @@ const DataTable = <T,>({
             </div>
         </div>
     );
-}
+};
 
 export default DataTable;
