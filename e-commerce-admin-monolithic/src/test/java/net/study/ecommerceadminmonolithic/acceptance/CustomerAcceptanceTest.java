@@ -66,8 +66,9 @@ class CustomerAcceptanceTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$.length()").value(2));
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(2))
+                .andExpect(jsonPath("$.totalElements").value(2));
     }
 
     // -------------------------------------------------
@@ -83,8 +84,9 @@ class CustomerAcceptanceTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$.length()").value(0));
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(0))
+                .andExpect(jsonPath("$.totalElements").value(0));
     }
 
     // -------------------------------------------------
@@ -104,8 +106,9 @@ class CustomerAcceptanceTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$.length()").value(0));
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(0))
+                .andExpect(jsonPath("$.totalElements").value(0));
     }
 
     // -------------------------------------------------
@@ -130,7 +133,9 @@ class CustomerAcceptanceTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2));
+                .andExpect(jsonPath("$.content.length()").value(2))
+                .andExpect(jsonPath("$.totalElements").value(5))
+                .andExpect(jsonPath("$.totalPages").value(3));
     }
 
     // -------------------------------------------------
@@ -151,12 +156,12 @@ class CustomerAcceptanceTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].customerId").exists())
-                .andExpect(jsonPath("$[0].customerName").value("홍길동"))
-                .andExpect(jsonPath("$[0].age").value(30))
-                .andExpect(jsonPath("$[0].phoneNumber").value("010-1234-5678"))
-                .andExpect(jsonPath("$[0].address").value("서울시 강남구"))
-                .andExpect(jsonPath("$[0].grade").value("VIP"));
+                .andExpect(jsonPath("$.content[0].customerId").exists())
+                .andExpect(jsonPath("$.content[0].customerName").value("홍길동"))
+                .andExpect(jsonPath("$.content[0].age").value(30))
+                .andExpect(jsonPath("$.content[0].phoneNumber").value("010-1234-5678"))
+                .andExpect(jsonPath("$.content[0].address").value("서울시 강남구"))
+                .andExpect(jsonPath("$.content[0].grade").value("VIP"));
     }
 
     // -------------------------------------------------

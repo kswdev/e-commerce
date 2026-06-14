@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -41,8 +43,8 @@ class CustomerControllerTest {
     void getCustomers_returns_active_customer_list() throws Exception {
         // Given
         CustomerEntity customer = customerEntity(1L, "Hong Gildong", 30, CustomerGrade.VIP, false);
-        given(customerService.findAllByActiveCustomer(any(Pageable.class)))
-                .willReturn(List.of(customer));
+        Page<CustomerEntity> page = new PageImpl<>(List.of(customer));
+        given(customerService.findAllByActiveCustomer(any(Pageable.class))).willReturn(page);
 
         // When & Then
         mockMvc.perform(get("/api/v1/customers")
@@ -50,36 +52,37 @@ class CustomerControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].customerId").value(1))
-                .andExpect(jsonPath("$[0].customerName").value("Hong Gildong"))
-                .andExpect(jsonPath("$[0].age").value(30))
-                .andExpect(jsonPath("$[0].grade").value("VIP"));
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(1))
+                .andExpect(jsonPath("$.content[0].customerId").value(1))
+                .andExpect(jsonPath("$.content[0].customerName").value("Hong Gildong"))
+                .andExpect(jsonPath("$.content[0].age").value(30))
+                .andExpect(jsonPath("$.content[0].grade").value("VIP"));
     }
 
     @Test
     @DisplayName("GET /api/v1/customers - 고객이 없으면 빈 배열을 반환한다")
     void getCustomers_returns_empty_list_when_no_customers() throws Exception {
         // Given
-        given(customerService.findAllByActiveCustomer(any(Pageable.class)))
-                .willReturn(Collections.emptyList());
+        Page<CustomerEntity> emptyPage = new PageImpl<>(Collections.emptyList());
+        given(customerService.findAllByActiveCustomer(any(Pageable.class))).willReturn(emptyPage);
 
         // When & Then
         mockMvc.perform(get("/api/v1/customers")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$.length()").value(0));
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(0))
+                .andExpect(jsonPath("$.totalElements").value(0));
     }
 
     @Test
     @DisplayName("GET /api/v1/customers - Pageable 파라미터를 Service에 전달한다")
     void getCustomers_delegates_pageable_to_service() throws Exception {
         // Given
-        given(customerService.findAllByActiveCustomer(any(Pageable.class)))
-                .willReturn(Collections.emptyList());
+        Page<CustomerEntity> emptyPage = new PageImpl<>(Collections.emptyList());
+        given(customerService.findAllByActiveCustomer(any(Pageable.class))).willReturn(emptyPage);
 
         // When
         mockMvc.perform(get("/api/v1/customers")
@@ -101,18 +104,19 @@ class CustomerControllerTest {
                 customerEntity(2L, "Kim Younghee", 25, CustomerGrade.BASIC, false),
                 customerEntity(3L, "Lee Sunshin", 45, CustomerGrade.VIP, false)
         );
-        given(customerService.findAllByActiveCustomer(any(Pageable.class)))
-                .willReturn(customers);
+        Page<CustomerEntity> page = new PageImpl<>(customers);
+        given(customerService.findAllByActiveCustomer(any(Pageable.class))).willReturn(page);
 
         // When & Then
         mockMvc.perform(get("/api/v1/customers")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(3))
-                .andExpect(jsonPath("$[0].customerName").value("Hong Gildong"))
-                .andExpect(jsonPath("$[1].customerName").value("Kim Younghee"))
-                .andExpect(jsonPath("$[2].customerName").value("Lee Sunshin"));
+                .andExpect(jsonPath("$.content.length()").value(3))
+                .andExpect(jsonPath("$.content[0].customerName").value("Hong Gildong"))
+                .andExpect(jsonPath("$.content[1].customerName").value("Kim Younghee"))
+                .andExpect(jsonPath("$.content[2].customerName").value("Lee Sunshin"))
+                .andExpect(jsonPath("$.totalElements").value(3));
     }
 
     @Test
@@ -120,15 +124,15 @@ class CustomerControllerTest {
     void getCustomers_response_includes_deleted_field() throws Exception {
         // Given
         CustomerEntity customer = customerEntity(1L, "Hong Gildong", 30, CustomerGrade.BASIC, false);
-        given(customerService.findAllByActiveCustomer(any(Pageable.class)))
-                .willReturn(List.of(customer));
+        Page<CustomerEntity> page = new PageImpl<>(List.of(customer));
+        given(customerService.findAllByActiveCustomer(any(Pageable.class))).willReturn(page);
 
         // When & Then: isDeleted 필드는 Jackson이 boolean getter 'isDeleted()' 를 'deleted' 키로 직렬화
         mockMvc.perform(get("/api/v1/customers")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].deleted").value(false));
+                .andExpect(jsonPath("$.content[0].deleted").value(false));
     }
 
     // -------------------------------------------------

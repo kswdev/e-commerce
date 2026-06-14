@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import net.study.ecommerceadminmonolithic.entity.Customer.CustomerEntity;
 import net.study.ecommerceadminmonolithic.repository.CustomerRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public List<CustomerEntity> findAllByActiveCustomer(Pageable pageable) {
+    public Page<CustomerEntity> findAllByActiveCustomer(Pageable pageable) {
         return customerRepository.findByIsDeletedIsFalse(pageable);
     }
 }

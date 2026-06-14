@@ -7,12 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -50,11 +49,11 @@ class CustomerRepositoryTest {
         customerRepository.save(customer("Park Chulsu", "park@test.com", true));  // 삭제됨
 
         // When
-        List<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
+        Page<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
 
         // Then
-        assertThat(result).hasSize(2);
-        assertThat(result).extracting(CustomerEntity::getCustomerName)
+        assertThat(result.getContent()).hasSize(2);
+        assertThat(result.getContent()).extracting(CustomerEntity::getCustomerName)
                 .containsExactlyInAnyOrder("Hong Gildong", "Kim Younghee");
     }
 
@@ -65,20 +64,20 @@ class CustomerRepositoryTest {
         customerRepository.save(customer("Deleted Customer", "del@test.com", true));
 
         // When
-        List<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
+        Page<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
 
         // Then
-        assertThat(result).isEmpty();
+        assertThat(result.getContent()).isEmpty();
     }
 
     @Test
     @DisplayName("findByIsDeletedIsFalse - 데이터가 없으면 빈 목록을 반환한다")
     void findByIsDeletedIsFalse_returns_empty_when_no_data() {
         // When
-        List<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
+        Page<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
 
         // Then
-        assertThat(result).isEmpty();
+        assertThat(result.getContent()).isEmpty();
     }
 
     @Test
@@ -89,13 +88,13 @@ class CustomerRepositoryTest {
             customerRepository.save(customer("Customer" + i, "c" + i + "@test.com", false));
         }
 
-        Pageable pageable = PageRequest.of(0, 3);
-
         // When
-        List<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(pageable);
+        Page<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(PageRequest.of(0, 3));
 
         // Then
-        assertThat(result).hasSize(3);
+        assertThat(result.getContent()).hasSize(3);
+        assertThat(result.getTotalElements()).isEqualTo(5);
+        assertThat(result.getTotalPages()).isEqualTo(2);
     }
 
     @Test
@@ -107,12 +106,12 @@ class CustomerRepositoryTest {
         }
 
         // When
-        List<CustomerEntity> page1 = customerRepository.findByIsDeletedIsFalse(PageRequest.of(0, 3));
-        List<CustomerEntity> page2 = customerRepository.findByIsDeletedIsFalse(PageRequest.of(1, 3));
+        Page<CustomerEntity> page1 = customerRepository.findByIsDeletedIsFalse(PageRequest.of(0, 3));
+        Page<CustomerEntity> page2 = customerRepository.findByIsDeletedIsFalse(PageRequest.of(1, 3));
 
         // Then
-        assertThat(page1).hasSize(3);
-        assertThat(page2).hasSize(2);
+        assertThat(page1.getContent()).hasSize(3);
+        assertThat(page2.getContent()).hasSize(2);
     }
 
     @Test
@@ -123,10 +122,10 @@ class CustomerRepositoryTest {
         customerRepository.save(customer("Kim Younghee", "kim@test.com", false));
 
         // When
-        List<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
+        Page<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
 
         // Then
-        assertThat(result).hasSize(2);
+        assertThat(result.getContent()).hasSize(2);
     }
 
     @Test
@@ -143,11 +142,11 @@ class CustomerRepositoryTest {
         customerRepository.save(basicCustomer);
 
         // When
-        List<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
+        Page<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
 
         // Then
-        assertThat(result).hasSize(2);
-        assertThat(result)
+        assertThat(result.getContent()).hasSize(2);
+        assertThat(result.getContent())
                 .extracting(CustomerEntity::getGrade)
                 .containsExactlyInAnyOrder(CustomerGrade.VIP, CustomerGrade.BASIC);
     }
@@ -163,11 +162,11 @@ class CustomerRepositoryTest {
         customerRepository.save(customer("Deleted2", "d2@test.com", true));
 
         // When
-        List<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
+        Page<CustomerEntity> result = customerRepository.findByIsDeletedIsFalse(Pageable.unpaged());
 
         // Then
-        assertThat(result).hasSize(3);
-        assertThat(result).allMatch(c -> !c.isDeleted());
+        assertThat(result.getContent()).hasSize(3);
+        assertThat(result.getContent()).allMatch(c -> !c.isDeleted());
     }
 
     // -------------------------------------------------

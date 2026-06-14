@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -83,10 +85,10 @@ class CustomerServiceTest {
                 customer(1L, "Hong Gildong", false),
                 customer(2L, "Kim Younghee", false)
         );
-        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(activeCustomers);
+        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(activeCustomers));
 
         // When
-        List<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
+        Page<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
 
         // Then
         assertThat(result).hasSize(2);
@@ -99,10 +101,10 @@ class CustomerServiceTest {
     void findAllByActiveCustomer_returns_empty_when_no_active_customers() {
         // Given
         Pageable pageable = PageRequest.of(0, 10);
-        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(Collections.emptyList());
+        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(Collections.emptyList()));
 
         // When
-        List<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
+        Page<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
 
         // Then
         assertThat(result).isEmpty();
@@ -114,7 +116,7 @@ class CustomerServiceTest {
     void findAllByActiveCustomer_delegates_pageable_to_repository() {
         // Given
         Pageable pageable = PageRequest.of(2, 5);
-        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(Collections.emptyList());
+        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(Collections.emptyList()));
 
         // When
         customerService.findAllByActiveCustomer(pageable);
@@ -133,10 +135,10 @@ class CustomerServiceTest {
                 customer(1L, "Hong Gildong", false),
                 customer(2L, "Kim Younghee", false)
         );
-        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(customers);
+        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(customers));
 
         // When
-        List<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
+        Page<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
 
         // Then
         assertThat(result)
@@ -149,7 +151,7 @@ class CustomerServiceTest {
     void findAllByActiveCustomer_calls_repository_exactly_once() {
         // Given
         Pageable pageable = PageRequest.of(0, 10);
-        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(Collections.emptyList());
+        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(Collections.emptyList()));
 
         // When
         customerService.findAllByActiveCustomer(pageable);
