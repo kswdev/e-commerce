@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "products", schema = "ecommerce")
+@Table(name = "products", schema = "ecommerce_monolithic")
 @Getter
 @Setter
 public class ProductEntity {
