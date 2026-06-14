@@ -28,10 +28,14 @@ yarn-error.log*
 .idea
 e-commerce-admin-monolithic/settings.gradle
 e-commerce-admin-monolithic/*.iml
+e-commerce-admin-monolithic/build/
 e-commerce-admin-monolithic/gradle/
 e-commerce-admin-monolithic/.gradle/
 e-commerce-admin-monolithic/gradlew
 e-commerce-admin-monolithic/gradlew.bat
+
+# docker
+e-commerce-admin-monolithic/docker/data
 
 # npm
 sb-admin-2-react/dist/
