@@ -1,0 +1,51 @@
+-- =====================================================
+-- Customer 더미 데이터 (20개)
+-- =====================================================
+INSERT INTO ecommerce_monolithic.customers (name, email, age, phone_number, address, grade, is_deleted, created_at, created_by, updated_at, updated_by)
+VALUES
+    ('김민준', 'minjun.kim@example.com', 28, '010-1234-5678', '서울시 강남구 테헤란로 123', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('이서연', 'seoyeon.lee@example.com', 34, '010-2345-6789', '서울시 서초구 반포대로 456', 'VIP', false, NOW(), 'system', NOW(), 'system'),
+    ('박지훈', 'jihoon.park@example.com', 22, '010-3456-7890', '경기도 성남시 분당구 판교로 789', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('최수아', 'sua.choi@example.com', 41, '010-4567-8901', '인천시 남동구 구월로 321', 'VIP', false, NOW(), 'system', NOW(), 'system'),
+    ('정도윤', 'doyoon.jung@example.com', 19, '010-5678-9012', '부산시 해운대구 해운대로 654', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('한예은', 'yeeun.han@example.com', 30, '010-6789-0123', '대구시 수성구 달구벌대로 987', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('오민서', 'minseo.oh@example.com', 26, '010-7890-1234', '광주시 서구 상무대로 111', 'VIP', false, NOW(), 'system', NOW(), 'system'),
+    ('신준혁', 'junhyeok.shin@example.com', 38, '010-8901-2345', '대전시 유성구 대학로 222', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('임지아', 'jia.lim@example.com', 25, '010-9012-3456', '울산시 남구 삼산로 333', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('강현우', 'hyunwoo.kang@example.com', 45, '010-0123-4567', '서울시 마포구 홍익로 444', 'VIP', false, NOW(), 'system', NOW(), 'system'),
+    ('윤채원', 'chaewon.yoon@example.com', 31, '010-1357-2468', '경기도 수원시 영통구 광교로 555', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('장태양', 'taeyang.jang@example.com', 27, '010-2468-3579', '서울시 은평구 통일로 666', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('배나은', 'naeun.bae@example.com', 33, '010-3579-4680', '경기도 고양시 일산동구 중앙로 777', 'VIP', false, NOW(), 'system', NOW(), 'system'),
+    ('조현진', 'hyunjin.jo@example.com', 20, '010-4680-5791', '서울시 노원구 동일로 888', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('권지수', 'jisu.kwon@example.com', 36, '010-5791-6802', '인천시 부평구 부평대로 999', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('문하늘', 'haneul.moon@example.com', 23, '010-6802-7913', '경기도 화성시 동탄대로 101', 'VIP', false, NOW(), 'system', NOW(), 'system'),
+    ('남승현', 'seunghyun.nam@example.com', 42, '010-7913-8024', '부산시 동래구 온천로 202', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('송다인', 'dain.song@example.com', 29, '010-8024-9135', '서울시 중구 을지로 303', 'BASIC', false, NOW(), 'system', NOW(), 'system'),
+    ('홍준서', 'junseo.hong@example.com', 37, '010-9135-0246', '경기도 용인시 기흥구 동백중앙로 404', 'VIP', false, NOW(), 'system', NOW(), 'system'),
+    ('류다영', 'dayoung.ryu@example.com', 24, '010-0246-1357', '서울시 동작구 사당로 505', 'BASIC', false, NOW(), 'system', NOW(), 'system');
+
+-- =====================================================
+-- Product 더미 데이터 (20개)
+-- =====================================================
+INSERT INTO ecommerce_monolithic.products (name, price, vendor_id, image_url, stock_quantity, is_exposed, is_deleted, created_at, created_by, updated_at, updated_by)
+VALUES
+    ('무선 블루투스 이어폰', 89000.00, 1, 'https://example.com/images/earphone-bt.jpg', 150, true, false, NOW(), 'system', NOW(), 'system'),
+    ('스마트워치 프로', 320000.00, 1, 'https://example.com/images/smartwatch.jpg', 80, true, false, NOW(), 'system', NOW(), 'system'),
+    ('노이즈 캔슬링 헤드폰', 250000.00, 2, 'https://example.com/images/headphone-nc.jpg', 60, true, false, NOW(), 'system', NOW(), 'system'),
+    ('USB-C 멀티포트 허브', 45000.00, 2, 'https://example.com/images/usb-hub.jpg', 200, true, false, NOW(), 'system', NOW(), 'system'),
+    ('기계식 키보드', 135000.00, 3, 'https://example.com/images/keyboard-mech.jpg', 90, true, false, NOW(), 'system', NOW(), 'system'),
+    ('무선 충전 패드', 29000.00, 3, 'https://example.com/images/wireless-charger.jpg', 300, true, false, NOW(), 'system', NOW(), 'system'),
+    ('4K 웹캠', 98000.00, 4, 'https://example.com/images/webcam-4k.jpg', 45, true, false, NOW(), 'system', NOW(), 'system'),
+    ('인체공학 마우스', 62000.00, 4, 'https://example.com/images/mouse-ergo.jpg', 120, true, false, NOW(), 'system', NOW(), 'system'),
+    ('27인치 모니터', 480000.00, 5, 'https://example.com/images/monitor-27.jpg', 30, true, false, NOW(), 'system', NOW(), 'system'),
+    ('휴대용 보조배터리 20000mAh', 55000.00, 5, 'https://example.com/images/powerbank.jpg', 180, true, false, NOW(), 'system', NOW(), 'system'),
+    ('블루투스 스피커', 75000.00, 1, 'https://example.com/images/speaker-bt.jpg', 95, true, false, NOW(), 'system', NOW(), 'system'),
+    ('스마트 홈 허브', 149000.00, 2, 'https://example.com/images/smart-hub.jpg', 40, true, false, NOW(), 'system', NOW(), 'system'),
+    ('노트북 스탠드', 38000.00, 3, 'https://example.com/images/laptop-stand.jpg', 250, true, false, NOW(), 'system', NOW(), 'system'),
+    ('게이밍 마우스패드 XL', 22000.00, 4, 'https://example.com/images/mousepad-xl.jpg', 400, true, false, NOW(), 'system', NOW(), 'system'),
+    ('LED 스탠드 조명', 48000.00, 5, 'https://example.com/images/led-stand.jpg', 110, true, false, NOW(), 'system', NOW(), 'system'),
+    ('포터블 SSD 1TB', 115000.00, 1, 'https://example.com/images/ssd-1tb.jpg', 75, true, false, NOW(), 'system', NOW(), 'system'),
+    ('태블릿 거치대', 32000.00, 2, 'https://example.com/images/tablet-stand.jpg', 160, true, false, NOW(), 'system', NOW(), 'system'),
+    ('USB 마이크', 88000.00, 3, 'https://example.com/images/usb-mic.jpg', 55, true, false, NOW(), 'system', NOW(), 'system'),
+    ('스마트 전구 4개입', 42000.00, 4, 'https://example.com/images/smart-bulb.jpg', 220, false, false, NOW(), 'system', NOW(), 'system'),
+    ('차량용 무선 충전 거치대', 67000.00, 5, 'https://example.com/images/car-charger.jpg', 85, true, false, NOW(), 'system', NOW(), 'system');
