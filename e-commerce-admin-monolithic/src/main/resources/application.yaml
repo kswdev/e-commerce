@@ -7,12 +7,14 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: none
+
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/ecommerce_monolithic?useSSL=false?CharacterEncoding=UTF-8?serverTimezone=UTC
+    url: jdbc:mysql://localhost:13306/ecommerce_monolithic?useSSL=false&CharacterEncoding=UTF-8&serverTimezone=UTC
     username: app
     password: app123
     driver-class-name: com.mysql.cj.jdbc.Driver

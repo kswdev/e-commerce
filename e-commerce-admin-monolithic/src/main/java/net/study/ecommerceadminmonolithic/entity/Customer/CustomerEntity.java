@@ -20,6 +20,8 @@ public class CustomerEntity {
     private Long customerId;
     @Column(name = "name")
     private String customerName;
+    @Column(name = "email")
+    private String customerEmail;
     @Column(name = "age")
     private int age;
     @Column(name = "phone_number")

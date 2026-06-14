@@ -1,11 +1,13 @@
 package net.study.ecommerceadminmonolithic.controller.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.study.ecommerceadminmonolithic.entity.Customer.CustomerEntity;
 import net.study.ecommerceadminmonolithic.entity.Customer.CustomerGrade;
 
 import java.time.OffsetDateTime;
 
+@Getter
 @AllArgsConstructor
 public class CustomerDTO {
 
