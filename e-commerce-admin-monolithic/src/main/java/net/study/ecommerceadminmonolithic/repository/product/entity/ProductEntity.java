@@ -1,4 +1,4 @@
-package net.study.ecommerceadminmonolithic.entity.product;
+package net.study.ecommerceadminmonolithic.repository.product.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

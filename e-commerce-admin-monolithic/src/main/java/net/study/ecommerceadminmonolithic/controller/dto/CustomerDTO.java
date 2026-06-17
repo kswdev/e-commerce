@@ -2,8 +2,8 @@ package net.study.ecommerceadminmonolithic.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.study.ecommerceadminmonolithic.entity.customer.CustomerEntity;
-import net.study.ecommerceadminmonolithic.entity.customer.CustomerGrade;
+import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerEntity;
+import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerGrade;
 
 import java.time.OffsetDateTime;
 
