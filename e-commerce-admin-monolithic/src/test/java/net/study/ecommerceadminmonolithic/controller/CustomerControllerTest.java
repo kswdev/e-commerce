@@ -1,7 +1,7 @@
 package net.study.ecommerceadminmonolithic.controller;
 
-import net.study.ecommerceadminmonolithic.entity.Customer.CustomerEntity;
-import net.study.ecommerceadminmonolithic.entity.Customer.CustomerGrade;
+import net.study.ecommerceadminmonolithic.entity.customer.CustomerEntity;
+import net.study.ecommerceadminmonolithic.entity.customer.CustomerGrade;
 import net.study.ecommerceadminmonolithic.service.CustomerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

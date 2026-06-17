@@ -2,7 +2,7 @@ package net.study.ecommerceadminmonolithic.service;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import net.study.ecommerceadminmonolithic.entity.Customer.CustomerEntity;
+import net.study.ecommerceadminmonolithic.entity.customer.CustomerEntity;
 import net.study.ecommerceadminmonolithic.repository.CustomerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

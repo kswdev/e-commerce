@@ -1,6 +1,6 @@
 package net.study.ecommerceadminmonolithic.repository;
 
-import net.study.ecommerceadminmonolithic.entity.Customer.CustomerEntity;
+import net.study.ecommerceadminmonolithic.entity.customer.CustomerEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

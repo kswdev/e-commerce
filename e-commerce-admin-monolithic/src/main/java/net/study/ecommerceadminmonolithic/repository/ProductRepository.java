@@ -1,6 +1,6 @@
 package net.study.ecommerceadminmonolithic.repository;
 
-import net.study.ecommerceadminmonolithic.entity.Product.ProductEntity;
+import net.study.ecommerceadminmonolithic.entity.product.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

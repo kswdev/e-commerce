@@ -1,6 +1,6 @@
 package net.study.ecommerceadminmonolithic.acceptance;
 
-import net.study.ecommerceadminmonolithic.entity.Product.ProductEntity;
+import net.study.ecommerceadminmonolithic.entity.product.ProductEntity;
 import net.study.ecommerceadminmonolithic.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
