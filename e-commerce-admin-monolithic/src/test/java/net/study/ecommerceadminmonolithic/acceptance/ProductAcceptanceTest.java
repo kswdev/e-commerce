@@ -74,7 +74,7 @@ class ProductAcceptanceTest {
 
     private ProductEntity product(String name, BigDecimal price) {
         ProductEntity entity = new ProductEntity();
-        entity.setProductName(name);
+        entity.setName(name);
         entity.setPrice(price);
         return entity;
     }
