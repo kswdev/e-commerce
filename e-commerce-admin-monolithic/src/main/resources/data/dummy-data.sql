@@ -49,3 +49,38 @@ VALUES
     ('USB 마이크', 88000.00, 3, 'https://example.com/images/usb-mic.jpg', 55, true, false, NOW(), 'system', NOW(), 'system'),
     ('스마트 전구 4개입', 42000.00, 4, 'https://example.com/images/smart-bulb.jpg', 220, false, false, NOW(), 'system', NOW(), 'system'),
     ('차량용 무선 충전 거치대', 67000.00, 5, 'https://example.com/images/car-charger.jpg', 85, true, false, NOW(), 'system', NOW(), 'system');
+
+-- =====================================================
+-- vendors 더미 데이터 (20개)
+-- =====================================================
+INSERT INTO ecommerce_monolithic.vendors
+(
+    name,
+    vendor_status,
+    is_deleted,
+    created_at,
+    created_by,
+    updated_at,
+    updated_by
+)
+VALUES
+    ('Vendor A',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor B',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor C',  'DISABLED', false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor D',  'PENDING',  false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor E',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor F',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor G',  'DISABLED', false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor H',  'PENDING',  false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor I',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor J',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor K',  'DISABLED', false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor L',  'PENDING',  false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor M',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor N',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor O',  'DISABLED', false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor P',  'PENDING',  false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor Q',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor R',  'ENABLED',   false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor S',  'DISABLED', false, NOW(), 'system', NOW(), 'system'),
+    ('Vendor T',  'PENDING',  false, NOW(), 'system', NOW(), 'system');
