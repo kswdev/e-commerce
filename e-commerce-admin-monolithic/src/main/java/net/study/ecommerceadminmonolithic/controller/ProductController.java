@@ -1,33 +1,26 @@
 package net.study.ecommerceadminmonolithic.controller;
 
+import lombok.RequiredArgsConstructor;
 import net.study.ecommerceadminmonolithic.controller.dto.ProductDTO;
-import net.study.ecommerceadminmonolithic.entity.Product.ProductEntity;
+import net.study.ecommerceadminmonolithic.service.ProductService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
+    private final ProductService productService;
+
     @GetMapping
-    public Page<ProductDTO> getProducts() {
+    public Page<ProductDTO> getProducts(@PageableDefault Pageable pageable) {
 
-        return new PageImpl<>(List.of(
-                dummyProductOnlyTest("이어폰", BigDecimal.TWO),
-                dummyProductOnlyTest("헤드셋", BigDecimal.ONE),
-                dummyProductOnlyTest("냉장고", BigDecimal.TEN)));
-    }
-
-    private ProductDTO dummyProductOnlyTest(String name, BigDecimal price) {
-        ProductDTO dto = new ProductDTO();
-        dto.setName(name);
-        dto.setPrice(price);
-        return dto;
+        return productService.findAll(pageable)
+                .map(ProductDTO::of);
     }
 }
