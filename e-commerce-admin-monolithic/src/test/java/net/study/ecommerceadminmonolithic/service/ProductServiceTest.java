@@ -62,13 +62,15 @@ class ProductServiceTest {
 
         //then
         assertThat(result).hasSize(4);
+        assertThat(result.getContent().getFirst().getId()).isEqualTo(1L);
+        assertThat(result.getContent().getFirst().getName()).isEqualTo("iphone");
         verify(productRepository, times(1)).findAll(pageable);
     }
 
     private ProductEntity product(Long id, String name, Long price, boolean isDeleted) {
         ProductEntity productEntity = new ProductEntity();
-        productEntity.setProductId(id);
-        productEntity.setProductName(name);
+        productEntity.setId(id);
+        productEntity.setName(name);
         productEntity.setPrice(BigDecimal.valueOf(price));
         productEntity.setDeleted(isDeleted);
         return productEntity;
