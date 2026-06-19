@@ -3,6 +3,7 @@ package net.study.ecommerceadminmonolithic.repository.product.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import net.study.ecommerceadminmonolithic.repository.vendor.entity.VendorEntity;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -20,8 +21,9 @@ public class ProductEntity {
     private String name;
     @Column(name = "price")
     private BigDecimal price;
-    @Column(name = "vendor_id")
-    private Long vendorId;
+    @ManyToOne
+    @JoinColumn(name = "vendor_id")
+    private VendorEntity vendor;
     @Column(name = "image_url")
     private String imageUrl;
 
@@ -40,5 +42,9 @@ public class ProductEntity {
     private OffsetDateTime updatedAt;
     @Column(name = "updated_by")
     private String updatedBy;
+
+    public String getCompany() {
+        return vendor.getVendorName();
+    }
 }
 

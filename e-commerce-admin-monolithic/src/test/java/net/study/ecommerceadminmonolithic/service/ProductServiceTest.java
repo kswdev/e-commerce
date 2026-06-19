@@ -3,6 +3,8 @@ package net.study.ecommerceadminmonolithic.service;
 import net.study.ecommerceadminmonolithic.domain.Product;
 import net.study.ecommerceadminmonolithic.repository.product.ProductRepository;
 import net.study.ecommerceadminmonolithic.repository.product.entity.ProductEntity;
+import net.study.ecommerceadminmonolithic.repository.vendor.VendorRepository;
+import net.study.ecommerceadminmonolithic.repository.vendor.entity.VendorEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,6 +36,7 @@ class ProductServiceTest {
     @Mock
     private ProductRepository productRepository;
 
+
     private ProductService productService;
 
     @BeforeEach
@@ -49,11 +52,14 @@ class ProductServiceTest {
     void findAll_returns_all_products_including_deleted() {
         //given
         Pageable pageable = PageRequest.of(0, 10);
+        VendorEntity apple = vendorEntity(1L, "Apple");
+        VendorEntity galaxy = vendorEntity(2L, "galaxy");
+
         List<ProductEntity> products = List.of(
-                product(1L, "iphone", 1000L, true),
-                product(1L, "ipad", 2000L, false),
-                product(1L, "galaxy", 3000L, false),
-                product(1L, "macbook", 4000L, false)
+                productEntity(1L, "iphone", 1000L, apple, true),
+                productEntity(1L, "ipad", 2000L, apple, false),
+                productEntity(1L, "galaxy", 3000L, galaxy, false),
+                productEntity(1L, "macbook", 4000L, apple, false)
         );
         given(productRepository.findAll(pageable)).willReturn(new PageImpl<>(products));
 
@@ -63,16 +69,25 @@ class ProductServiceTest {
         //then
         assertThat(result).hasSize(4);
         assertThat(result.getContent().getFirst().getId()).isEqualTo(1L);
+        assertThat(result.getContent().getFirst().getCompany()).isEqualTo("Apple");
         assertThat(result.getContent().getFirst().getName()).isEqualTo("iphone");
         verify(productRepository, times(1)).findAll(pageable);
     }
 
-    private ProductEntity product(Long id, String name, Long price, boolean isDeleted) {
+    private ProductEntity productEntity(Long id, String name, Long price, VendorEntity vendorEntity, boolean isDeleted) {
         ProductEntity productEntity = new ProductEntity();
         productEntity.setId(id);
         productEntity.setName(name);
         productEntity.setPrice(BigDecimal.valueOf(price));
+        productEntity.setVendor(vendorEntity);
         productEntity.setDeleted(isDeleted);
         return productEntity;
+    }
+
+    private VendorEntity vendorEntity(Long id, String name) {
+        VendorEntity vendorEntity = new VendorEntity();
+        vendorEntity.setVendorId(id);
+        vendorEntity.setVendorName(name);
+        return vendorEntity;
     }
 }
