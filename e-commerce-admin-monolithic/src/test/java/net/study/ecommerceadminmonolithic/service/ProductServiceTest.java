@@ -3,7 +3,6 @@ package net.study.ecommerceadminmonolithic.service;
 import net.study.ecommerceadminmonolithic.domain.Product;
 import net.study.ecommerceadminmonolithic.repository.product.ProductRepository;
 import net.study.ecommerceadminmonolithic.repository.product.entity.ProductEntity;
-import net.study.ecommerceadminmonolithic.repository.vendor.VendorRepository;
 import net.study.ecommerceadminmonolithic.repository.vendor.entity.VendorEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
