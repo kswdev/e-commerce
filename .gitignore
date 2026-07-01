@@ -2,6 +2,7 @@
 
 # dependencies
 /sb-admin-2-react/node_modules/
+/client-react/node_modules/
 /sb-admin-2-react/yarn.lock
 /.pnp
 .pnp.js
@@ -40,3 +41,5 @@ e-commerce-admin-monolithic/docker/data
 # npm
 sb-admin-2-react/dist/
 sb-admin-2-react/package-lock.json
+client-react/dist/
+client-react/package-lock.json
