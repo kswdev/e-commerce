@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "운동화 A",
+    "price": 59000,
+    "imageUrl": "https://placehold.co/400x300?text=Product+1",
+    "description": "가볍고 편안한 데일리 운동화입니다."
+  },
+  {
+    "id": 2,
+    "name": "가방 B",
+    "price": 120000,
+    "imageUrl": "https://placehold.co/400x300?text=Product+2",
+    "description": "튼튼한 소재로 만든 백팩입니다."
+  },
+  {
+    "id": 3,
+    "name": "티셔츠 C",
+    "price": 35000,
+    "imageUrl": "https://placehold.co/400x300?text=Product+3",
+    "description": "시원한 면 소재 반팔 티셔츠입니다."
+  },
+  {
+    "id": 4,
+    "name": "청바지 D",
+    "price": 89000,
+    "imageUrl": "https://placehold.co/400x300?text=Product+4",
+    "description": "슬림핏 스트레치 청바지입니다."
+  },
+  {
+    "id": 5,
+    "name": "모자 E",
+    "price": 28000,
+    "imageUrl": "https://placehold.co/400x300?text=Product+5",
+    "description": "UV 차단 기능이 있는 볼캡입니다."
+  },
+  {
+    "id": 6,
+    "name": "지갑 F",
+    "price": 45000,
+    "imageUrl": "https://placehold.co/400x300?text=Product+6",
+    "description": "슬림한 카드 수납 가죽 지갑입니다."
+  }
+]
