@@ -5,6 +5,7 @@
 - **React 16** with TypeScript (strict mode)
 - **Vite 5** as build tool
 - **React Router DOM v6** for client-side routing
+- **Zustand v4** for state management (v5는 React 18 필요 — v4 고정)
 - **Axios** for HTTP requests
 - **Bootstrap 4** for styling
 

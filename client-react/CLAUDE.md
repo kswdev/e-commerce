@@ -11,7 +11,12 @@ npm run build    # Production build
 
 There is no test runner configured yet.
 
+## Custom Skills
+
+- `/new-page <PageName>` — 새 페이지 컴포넌트 생성 + 라우트 자동 추가
+
 ## Reference Docs
 
 - [Tech Stack](docs/tech-stack.md) — 의존성 버전 및 주의사항
-- [Architecture](docs/architecture.md) — 디렉토리 구조, 라우팅, API 패턴
+- [Architecture](docs/architecture.md) — 디렉토리 구조, 라우팅, 데이터 전략
+- [Roadmap](docs/roadmap.md) — Phase별 진행 현황 및 Claude 학습 목표
