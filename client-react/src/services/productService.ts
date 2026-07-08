@@ -1,4 +1,4 @@
-import productsData from '../../data/products.json';
+import { fetchProducts, fetchProductById } from '../api/productApi';
 
 export interface Product {
     id: number;
@@ -9,18 +9,18 @@ export interface Product {
     category: string;
 }
 
-// 추후 실제 API로 교체 시 이 파일만 수정하면 됨
-// ex) return axios.get('/api/products').then(res => res.data)
-
-export const getProducts = async (): Promise<Product[]> => {
-    return productsData;
-};
-
 export const getProductById = async (id: number): Promise<Product | undefined> => {
-    return productsData.find(p => p.id === id);
+    return fetchProductById(id);
 };
 
 export const getProductsByCategory = async (category: string): Promise<Product[]> => {
-    if (category === '전체') return productsData;
-    return productsData.filter(p => p.category === category);
+    const products = await fetchProducts();
+    if (category === '전체') return products;
+    return products.filter(p => p.category === category);
+};
+
+export const searchProductsByName = (products: Product[], query: string): Product[] => {
+    const normalized = query.trim().toLowerCase();
+    if (!normalized) return products;
+    return products.filter(p => p.name.toLowerCase().includes(normalized));
 };
