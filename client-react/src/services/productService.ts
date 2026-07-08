@@ -6,6 +6,7 @@ export interface Product {
     price: number;
     imageUrl: string;
     description: string;
+    category: string;
 }
 
 // 추후 실제 API로 교체 시 이 파일만 수정하면 됨
@@ -17,4 +18,9 @@ export const getProducts = async (): Promise<Product[]> => {
 
 export const getProductById = async (id: number): Promise<Product | undefined> => {
     return productsData.find(p => p.id === id);
+};
+
+export const getProductsByCategory = async (category: string): Promise<Product[]> => {
+    if (category === '전체') return productsData;
+    return productsData.filter(p => p.category === category);
 };
