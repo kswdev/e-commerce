@@ -19,4 +19,4 @@ There is no test runner configured yet.
 
 - [Tech Stack](docs/tech-stack.md) — 의존성 버전 및 주의사항
 - [Architecture](docs/architecture.md) — 디렉토리 구조, 라우팅, 데이터 전략
-- [Roadmap](docs/roadmap.md) — Phase별 진행 현황 및 Claude 학습 목표
+- [Guidelines](docs/roadmap.md) — 상황별 기술 선택 가이드라인
