@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS ecommerce_monolithic.customers
     address      VARCHAR(500),
     grade        VARCHAR(20)  NOT NULL DEFAULT 'BASIC',
     is_deleted   BOOLEAN      NOT NULL DEFAULT FALSE,
-    created_at   TIMESTAMP,
+    created_at   DATETIME(6),
     created_by   VARCHAR(100),
-    updated_at   TIMESTAMP,
+    updated_at   DATETIME(6),
     updated_by   VARCHAR(100),
     PRIMARY KEY (id)
 );
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS ecommerce_monolithic.vendors
     name          VARCHAR(255) NOT NULL,
     vendor_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
     is_deleted    BOOLEAN     NOT NULL DEFAULT FALSE,
-    created_at    TIMESTAMP,
+    created_at    DATETIME(6),
     created_by    VARCHAR(100),
-    updated_at    TIMESTAMP,
+    updated_at    DATETIME(6),
     updated_by    VARCHAR(100),
     PRIMARY KEY (id)
 );
@@ -64,9 +64,9 @@ CREATE TABLE IF NOT EXISTS ecommerce_monolithic.products
     stock_quantity INT            NOT NULL DEFAULT 0,
     is_exposed     BOOLEAN        NOT NULL DEFAULT TRUE,
     is_deleted     BOOLEAN        NOT NULL DEFAULT FALSE,
-    created_at     TIMESTAMP,
+    created_at     DATETIME(6),
     created_by     VARCHAR(100),
-    updated_at     TIMESTAMP,
+    updated_at     DATETIME(6),
     updated_by     VARCHAR(100),
     PRIMARY KEY (id),
     CONSTRAINT fk_products_vendor FOREIGN KEY (vendor_id) REFERENCES ecommerce_monolithic.vendors (id),

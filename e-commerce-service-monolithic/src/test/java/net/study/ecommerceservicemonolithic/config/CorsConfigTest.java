@@ -22,7 +22,7 @@ class CorsConfigTest {
     void should_allow_preflight_request() throws Exception {
 
         mockMvc.perform(options("/api/test")
-                        .header("Origin", "http://localhost:3000")
+                        .header("Origin", "http://localhost:3001")
                         .header("Access-Control-Request-Method", "GET"))
                 .andExpect(status().isOk())
                 .andExpect(header().string(

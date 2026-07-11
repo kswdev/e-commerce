@@ -77,25 +77,25 @@ VALUES
 -- Product 더미 데이터 (category_id 추가)
 -- =====================================================
 INSERT INTO ecommerce_monolithic.products
-(name, price, vendor_id, category_id, image_url, stock_quantity, is_exposed, is_deleted, created_at, created_by, updated_at, updated_by)
+(name, description, price, vendor_id, category_id, image_url, stock_quantity, is_exposed, is_deleted, created_at, created_by, updated_at, updated_by)
 VALUES
-    ('무선 블루투스 이어폰', 89000.00, 1, 1, 'https://example.com/images/earphone-bt.jpg', 150, true, false, NOW(), 'system', NOW(), 'system'),
-    ('스마트워치 프로', 320000.00, 1, 2, 'https://example.com/images/smartwatch.jpg', 80, true, false, NOW(), 'system', NOW(), 'system'),
-    ('노이즈 캔슬링 헤드폰', 250000.00, 2, 1, 'https://example.com/images/headphone-nc.jpg', 60, true, false, NOW(), 'system', NOW(), 'system'),
-    ('USB-C 멀티포트 허브', 45000.00, 2, 3, 'https://example.com/images/usb-hub.jpg', 200, true, false, NOW(), 'system', NOW(), 'system'),
-    ('기계식 키보드', 135000.00, 3, 3, 'https://example.com/images/keyboard-mech.jpg', 90, true, false, NOW(), 'system', NOW(), 'system'),
-    ('무선 충전 패드', 29000.00, 3, 5, 'https://example.com/images/wireless-charger.jpg', 300, true, false, NOW(), 'system', NOW(), 'system'),
-    ('4K 웹캠', 98000.00, 4, 3, 'https://example.com/images/webcam-4k.jpg', 45, true, false, NOW(), 'system', NOW(), 'system'),
-    ('인체공학 마우스', 62000.00, 4, 3, 'https://example.com/images/mouse-ergo.jpg', 120, true, false, NOW(), 'system', NOW(), 'system'),
-    ('27인치 모니터', 480000.00, 5, 4, 'https://example.com/images/monitor-27.jpg', 30, true, false, NOW(), 'system', NOW(), 'system'),
-    ('휴대용 보조배터리 20000mAh', 55000.00, 5, 5, 'https://example.com/images/powerbank.jpg', 180, true, false, NOW(), 'system', NOW(), 'system'),
-    ('블루투스 스피커', 75000.00, 1, 1, 'https://example.com/images/speaker-bt.jpg', 95, true, false, NOW(), 'system', NOW(), 'system'),
-    ('스마트 홈 허브', 149000.00, 2, 6, 'https://example.com/images/smart-hub.jpg', 40, true, false, NOW(), 'system', NOW(), 'system'),
-    ('노트북 스탠드', 38000.00, 3, 7, 'https://example.com/images/laptop-stand.jpg', 250, true, false, NOW(), 'system', NOW(), 'system'),
-    ('게이밍 마우스패드 XL', 22000.00, 4, 7, 'https://example.com/images/mousepad-xl.jpg', 400, true, false, NOW(), 'system', NOW(), 'system'),
-    ('LED 스탠드 조명', 48000.00, 5, 6, 'https://example.com/images/led-stand.jpg', 110, true, false, NOW(), 'system', NOW(), 'system'),
-    ('포터블 SSD 1TB', 115000.00, 1, 8, 'https://example.com/images/ssd-1tb.jpg', 75, true, false, NOW(), 'system', NOW(), 'system'),
-    ('태블릿 거치대', 32000.00, 2, 7, 'https://example.com/images/tablet-stand.jpg', 160, true, false, NOW(), 'system', NOW(), 'system'),
-    ('USB 마이크', 88000.00, 3, 3, 'https://example.com/images/usb-mic.jpg', 55, true, false, NOW(), 'system', NOW(), 'system'),
-    ('스마트 전구 4개입', 42000.00, 4, 6, 'https://example.com/images/smart-bulb.jpg', 220, false, false, NOW(), 'system', NOW(), 'system'),
-    ('차량용 무선 충전 거치대', 67000.00, 5, 5, 'https://example.com/images/car-charger.jpg', 85, true, false, NOW(), 'system', NOW(), 'system');
+    ('무선 블루투스 이어폰', '고음질 블루투스 5.3 이어폰, 최대 30시간 재생', 89000.00, 1, 1, 'https://example.com/images/earphone-bt.jpg', 150, true, false, NOW(), 'system', NOW(), 'system'),
+    ('스마트워치 프로', '심박수·혈중산소 측정, GPS 내장 스마트워치', 320000.00, 1, 2, 'https://example.com/images/smartwatch.jpg', 80, true, false, NOW(), 'system', NOW(), 'system'),
+    ('노이즈 캔슬링 헤드폰', '업계 최고 수준의 능동형 노이즈 캔슬링 헤드폰', 250000.00, 2, 1, 'https://example.com/images/headphone-nc.jpg', 60, true, false, NOW(), 'system', NOW(), 'system'),
+    ('USB-C 멀티포트 허브', 'HDMI·USB-A·SD카드 등 7-in-1 멀티포트 허브', 45000.00, 2, 3, 'https://example.com/images/usb-hub.jpg', 200, true, false, NOW(), 'system', NOW(), 'system'),
+    ('기계식 키보드', '적축 스위치 채용, RGB 백라이트 풀배열 기계식 키보드', 135000.00, 3, 3, 'https://example.com/images/keyboard-mech.jpg', 90, true, false, NOW(), 'system', NOW(), 'system'),
+    ('무선 충전 패드', 'Qi 규격 15W 고속 무선 충전 패드', 29000.00, 3, 5, 'https://example.com/images/wireless-charger.jpg', 300, true, false, NOW(), 'system', NOW(), 'system'),
+    ('4K 웹캠', '4K UHD 해상도, 자동 조명 보정 내장 웹캠', 98000.00, 4, 3, 'https://example.com/images/webcam-4k.jpg', 45, true, false, NOW(), 'system', NOW(), 'system'),
+    ('인체공학 마우스', '손목 피로 최소화 설계, 6개 커스텀 버튼 지원', 62000.00, 4, 3, 'https://example.com/images/mouse-ergo.jpg', 120, true, false, NOW(), 'system', NOW(), 'system'),
+    ('27인치 모니터', '27인치 QHD IPS 패널, 144Hz 주사율 게이밍 모니터', 480000.00, 5, 4, 'https://example.com/images/monitor-27.jpg', 30, true, false, NOW(), 'system', NOW(), 'system'),
+    ('휴대용 보조배터리 20000mAh', '20000mAh 대용량, PD 65W 고속충전 지원 보조배터리', 55000.00, 5, 5, 'https://example.com/images/powerbank.jpg', 180, true, false, NOW(), 'system', NOW(), 'system'),
+    ('블루투스 스피커', '360도 서라운드 사운드, IPX7 방수 블루투스 스피커', 75000.00, 1, 1, 'https://example.com/images/speaker-bt.jpg', 95, true, false, NOW(), 'system', NOW(), 'system'),
+    ('스마트 홈 허브', 'Wi-Fi·Zigbee·Z-Wave 통합 지원 스마트홈 허브', 149000.00, 2, 6, 'https://example.com/images/smart-hub.jpg', 40, true, false, NOW(), 'system', NOW(), 'system'),
+    ('노트북 스탠드', '높이·각도 6단계 조절 가능한 알루미늄 노트북 스탠드', 38000.00, 3, 7, 'https://example.com/images/laptop-stand.jpg', 250, true, false, NOW(), 'system', NOW(), 'system'),
+    ('게이밍 마우스패드 XL', '900x400mm 대형 천연 고무 게이밍 마우스패드', 22000.00, 4, 7, 'https://example.com/images/mousepad-xl.jpg', 400, true, false, NOW(), 'system', NOW(), 'system'),
+    ('LED 스탠드 조명', '색온도·밝기 무단 조절, USB 전원 LED 스탠드', 48000.00, 5, 6, 'https://example.com/images/led-stand.jpg', 110, true, false, NOW(), 'system', NOW(), 'system'),
+    ('포터블 SSD 1TB', '1TB 외장 SSD, USB 3.2 Gen2 최대 1050MB/s', 115000.00, 1, 8, 'https://example.com/images/ssd-1tb.jpg', 75, true, false, NOW(), 'system', NOW(), 'system'),
+    ('태블릿 거치대', '11~13인치 호환 360도 회전 알루미늄 태블릿 거치대', 32000.00, 2, 7, 'https://example.com/images/tablet-stand.jpg', 160, true, false, NOW(), 'system', NOW(), 'system'),
+    ('USB 마이크', '심장부 콘덴서 채용, 실시간 모니터링 지원 USB 마이크', 88000.00, 3, 3, 'https://example.com/images/usb-mic.jpg', 55, true, false, NOW(), 'system', NOW(), 'system'),
+    ('스마트 전구 4개입', '1600만 색상 지원, 앱·음성 제어 스마트 LED 전구 4개입', 42000.00, 4, 6, 'https://example.com/images/smart-bulb.jpg', 220, false, false, NOW(), 'system', NOW(), 'system'),
+    ('차량용 무선 충전 거치대', '15W 고속 무선충전, 자동 클램프 차량용 거치대', 67000.00, 5, 5, 'https://example.com/images/car-charger.jpg', 85, true, false, NOW(), 'system', NOW(), 'system');
