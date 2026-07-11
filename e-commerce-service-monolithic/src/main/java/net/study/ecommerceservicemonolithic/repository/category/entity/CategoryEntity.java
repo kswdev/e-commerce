@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name = "categories")
+@Table(name = "categories", schema = "ecommerce_monolithic")
 @Entity
 @Getter @Setter
 public class CategoryEntity {
