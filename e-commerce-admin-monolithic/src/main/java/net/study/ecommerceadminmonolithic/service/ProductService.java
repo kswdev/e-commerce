@@ -2,7 +2,7 @@ package net.study.ecommerceadminmonolithic.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import net.study.ecommerceadminmonolithic.domain.Product;
+import net.study.ecommerceadminmonolithic.domain.product.Product;
 import net.study.ecommerceadminmonolithic.repository.product.ProductRepository;
 import net.study.ecommerceadminmonolithic.repository.product.entity.ProductEntity;
 import org.springframework.data.domain.Page;

@@ -3,7 +3,7 @@ package net.study.ecommerceadminmonolithic.controller.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import net.study.ecommerceadminmonolithic.domain.Product;
+import net.study.ecommerceadminmonolithic.domain.product.Product;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;

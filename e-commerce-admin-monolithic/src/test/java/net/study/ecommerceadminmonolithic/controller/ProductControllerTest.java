@@ -1,6 +1,6 @@
 package net.study.ecommerceadminmonolithic.controller;
 
-import net.study.ecommerceadminmonolithic.domain.Product;
+import net.study.ecommerceadminmonolithic.domain.product.Product;
 import net.study.ecommerceadminmonolithic.service.ProductService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

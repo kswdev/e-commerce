@@ -1,4 +1,4 @@
-package net.study.ecommerceadminmonolithic.domain;
+package net.study.ecommerceadminmonolithic.domain.product;
 
 import lombok.Getter;
 import lombok.Setter;
