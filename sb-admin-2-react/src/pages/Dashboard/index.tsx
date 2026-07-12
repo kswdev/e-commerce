@@ -1,10 +1,12 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
 import CardInfo from '../../components/Cards/Info';
 import ChartDonut from '../../components/Charts/Donut';
 import ChartLine from '../../components/Charts/Line';
 import PageHeading from '../../components/PageHeading';
+import {getDailyCustomerJoinCnt, getDailyCustomerQuitCnt} from "../../api/users";
+import {getDailyCancelCnt, getDailyPaymentCnt} from "../../api/payments";
 
 const Dashboard = () => {
 
@@ -16,6 +18,20 @@ const Dashboard = () => {
     useEffect(() => {
         document.getElementById('body')!.className = 'page-top';
     });
+
+    useEffect(() => {
+        getDailyCustomerJoinCnt()
+            .then(customerJoinCnt => setDailyCustomerJoinCnt(customerJoinCnt));
+
+        getDailyCustomerQuitCnt()
+            .then(customerQuitCnt => setDailyCustomerQuitCnt(customerQuitCnt));
+
+        getDailyPaymentCnt()
+            .then(paymentCnt => setDailyPaymentCnt(paymentCnt));
+
+        getDailyCancelCnt()
+            .then(cancelCnt => setDailyCancelCnt(cancelCnt));
+    }, []);
     
     
     return (
