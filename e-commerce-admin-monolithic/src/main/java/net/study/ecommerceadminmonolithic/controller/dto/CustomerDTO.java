@@ -2,8 +2,8 @@ package net.study.ecommerceadminmonolithic.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerEntity;
-import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerGrade;
+import net.study.ecommerceadminmonolithic.domain.customer.Customer;
+import net.study.ecommerceadminmonolithic.domain.customer.CustomerGrade;
 
 import java.time.OffsetDateTime;
 
@@ -21,17 +21,17 @@ public class CustomerDTO {
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
 
-    public static CustomerDTO of(CustomerEntity customerEntity) {
+    public static CustomerDTO of(Customer customer) {
         return new CustomerDTO(
-                customerEntity.getCustomerId(),
-                customerEntity.getCustomerName(),
-                customerEntity.getAge(),
-                customerEntity.getPhoneNumber(),
-                customerEntity.getAddress(),
-                customerEntity.getGrade(),
-                customerEntity.isDeleted(),
-                customerEntity.getCreatedAt(),
-                customerEntity.getUpdatedAt()
+                customer.getCustomerId(),
+                customer.getCustomerName(),
+                customer.getAge(),
+                customer.getPhoneNumber(),
+                customer.getAddress(),
+                customer.getGrade(),
+                customer.isDeleted(),
+                customer.getCreatedAt(),
+                customer.getUpdatedAt()
         );
     }
 }

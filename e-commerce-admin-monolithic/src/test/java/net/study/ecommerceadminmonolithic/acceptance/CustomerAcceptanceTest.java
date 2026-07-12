@@ -1,7 +1,7 @@
 package net.study.ecommerceadminmonolithic.acceptance;
 
 import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerEntity;
-import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerGrade;
+import net.study.ecommerceadminmonolithic.domain.customer.CustomerGrade;
 import net.study.ecommerceadminmonolithic.repository.customer.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

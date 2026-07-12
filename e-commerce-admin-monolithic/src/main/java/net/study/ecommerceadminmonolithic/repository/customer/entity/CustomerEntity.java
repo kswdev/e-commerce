@@ -3,6 +3,7 @@ package net.study.ecommerceadminmonolithic.repository.customer.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import net.study.ecommerceadminmonolithic.domain.customer.CustomerGrade;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 

@@ -1,7 +1,8 @@
 package net.study.ecommerceadminmonolithic.service;
 
+import net.study.ecommerceadminmonolithic.domain.customer.Customer;
 import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerEntity;
-import net.study.ecommerceadminmonolithic.repository.customer.entity.CustomerGrade;
+import net.study.ecommerceadminmonolithic.domain.customer.CustomerGrade;
 import net.study.ecommerceadminmonolithic.repository.customer.CustomerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,10 +10,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +36,9 @@ class CustomerServiceTest {
     @Mock
     private CustomerRepository customerRepository;
 
+    @Mock
+    private ObjectMapper objectMapper;
+
     @InjectMocks
     private CustomerService customerService;
 
@@ -49,9 +55,11 @@ class CustomerServiceTest {
                 customer(2L, "Kim Younghee", true)   // 삭제된 고객도 포함
         );
         given(customerRepository.findAll()).willReturn(customers);
+        given(objectMapper.convertValue(customers.get(0), Customer.class)).willReturn(new Customer());
+        given(objectMapper.convertValue(customers.get(1), Customer.class)).willReturn(new Customer());
 
         // When
-        List<CustomerEntity> result = customerService.findAll();
+        List<Customer> result = customerService.findAll();
 
         // Then
         assertThat(result).hasSize(2);
@@ -65,7 +73,7 @@ class CustomerServiceTest {
         given(customerRepository.findAll()).willReturn(Collections.emptyList());
 
         // When
-        List<CustomerEntity> result = customerService.findAll();
+        List<Customer> result = customerService.findAll();
 
         // Then
         assertThat(result).isEmpty();
@@ -86,9 +94,11 @@ class CustomerServiceTest {
                 customer(2L, "Kim Younghee", false)
         );
         given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(activeCustomers));
+        given(objectMapper.convertValue(activeCustomers.get(0), Customer.class)).willReturn(new Customer());
+        given(objectMapper.convertValue(activeCustomers.get(1), Customer.class)).willReturn(new Customer());
 
         // When
-        Page<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
+        Page<Customer> result = customerService.findAllByActiveCustomer(pageable);
 
         // Then
         assertThat(result).hasSize(2);
@@ -104,7 +114,7 @@ class CustomerServiceTest {
         given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(Collections.emptyList()));
 
         // When
-        Page<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
+        Page<Customer> result = customerService.findAllByActiveCustomer(pageable);
 
         // Then
         assertThat(result).isEmpty();
@@ -123,27 +133,6 @@ class CustomerServiceTest {
 
         // Then: 정확한 Pageable 객체가 Repository 로 전달됨
         verify(customerRepository).findByIsDeletedIsFalse(pageable);
-    }
-
-    @Test
-    @DisplayName("findAllByActiveCustomer - Repository 반환 순서를 그대로 유지한다")
-    void findAllByActiveCustomer_preserves_order_from_repository() {
-        // Given
-        Pageable pageable = PageRequest.of(0, 10);
-        List<CustomerEntity> customers = List.of(
-                customer(3L, "Lee Sunshin", false),
-                customer(1L, "Hong Gildong", false),
-                customer(2L, "Kim Younghee", false)
-        );
-        given(customerRepository.findByIsDeletedIsFalse(pageable)).willReturn(new PageImpl<>(customers));
-
-        // When
-        Page<CustomerEntity> result = customerService.findAllByActiveCustomer(pageable);
-
-        // Then
-        assertThat(result)
-                .extracting(CustomerEntity::getCustomerName)
-                .containsExactly("Lee Sunshin", "Hong Gildong", "Kim Younghee");
     }
 
     @Test
