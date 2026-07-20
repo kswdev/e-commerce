@@ -22,4 +22,9 @@ public class CustomerController {
         return customerService.findAllByActiveCustomer(pageable)
                 .map(CustomerDTO::of);
     }
+
+    @GetMapping("/daily-join-cnt")
+    public int getDailyCustomerJoinCount() {
+        return customerService.getDailyCustomerJoinCount();
+    }
 }

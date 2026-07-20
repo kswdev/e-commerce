@@ -17,6 +17,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import tools.jackson.databind.ObjectMapper;
 
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Collections;
 import java.util.List;
 
@@ -150,6 +153,29 @@ class CustomerServiceTest {
         verify(customerRepository, times(2)).findByIsDeletedIsFalse(pageable);
     }
 
+    @Test
+    @DisplayName("getDailyJoinCnt - 당일 회원 가입한 회원 수를 반환한다.")
+    void getDailyJoinCnt_returns_daily_join_count() {
+        //given
+        OffsetDateTime now = OffsetDateTime.now();
+        ZoneOffset offset = now.getOffset();
+
+        OffsetDateTime startOfDay = now.toLocalDate().atStartOfDay().atOffset(offset);
+        OffsetDateTime endOfDay = now.toLocalDate().atTime(LocalTime.MAX).atOffset(offset);
+
+        given(customerRepository.findByCreatedAtBetween(startOfDay, endOfDay))
+                .willReturn(List.of(
+                        todayJoinCustomer(1L, "test-1"),
+                        todayJoinCustomer(2L, "test-2")
+                ));
+
+        //when
+        int count = customerService.getDailyCustomerJoinCount();
+
+        //then
+        assertThat(count).isEqualTo(2);
+    }
+
     // -------------------------------------------------
     // Helper
     // -------------------------------------------------
@@ -159,6 +185,15 @@ class CustomerServiceTest {
         entity.setCustomerName(name);
         entity.setGrade(CustomerGrade.BASIC);
         entity.setDeleted(isDeleted);
+        return entity;
+    }
+
+    private CustomerEntity todayJoinCustomer(Long id, String name) {
+        CustomerEntity entity = new CustomerEntity();
+        entity.setCustomerId(id);
+        entity.setCustomerName(name);
+        entity.setGrade(CustomerGrade.BASIC);
+        entity.setCreatedAt(OffsetDateTime.now());
         return entity;
     }
 }

@@ -6,8 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.OffsetDateTime;
+import java.util.List;
+
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
 
     Page<CustomerEntity> findByIsDeletedIsFalse(Pageable pageable);
+    List<CustomerEntity> findByCreatedAtBetween(OffsetDateTime start, OffsetDateTime end);
 }
