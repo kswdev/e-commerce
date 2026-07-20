@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/customers")
 @RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("/customers")
+    @GetMapping
     public Page<CustomerDTO> getAllCustomers(@PageableDefault(size = 10) Pageable pageable) {
         return customerService.findAllByActiveCustomer(pageable)
                 .map(CustomerDTO::of);
