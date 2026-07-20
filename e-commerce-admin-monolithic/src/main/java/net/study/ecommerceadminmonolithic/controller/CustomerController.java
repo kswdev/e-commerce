@@ -27,4 +27,9 @@ public class CustomerController {
     public int getDailyCustomerJoinCount() {
         return customerService.getDailyCustomerJoinCount();
     }
+
+    @GetMapping("/daily-quit-cnt")
+    public int getDailyCustomerQuitCount() {
+        return customerService.getDailyCustomerQuitCount();
+    }
 }

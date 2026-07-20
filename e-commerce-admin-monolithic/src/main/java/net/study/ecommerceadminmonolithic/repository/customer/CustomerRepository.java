@@ -14,4 +14,5 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> 
 
     Page<CustomerEntity> findByIsDeletedIsFalse(Pageable pageable);
     List<CustomerEntity> findByCreatedAtBetween(OffsetDateTime start, OffsetDateTime end);
+    List<CustomerEntity> findByIsDeletedIsTrueAndCreatedAtBetween(OffsetDateTime start, OffsetDateTime end);
 }

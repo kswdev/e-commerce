@@ -176,6 +176,29 @@ class CustomerServiceTest {
         assertThat(count).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("getDailyQuitCnt - 당일 회원 탈퇴한 회원 수를 반환한다.")
+    void getDailyQuitCnt_returns_daily_quit_count() {
+        //given
+        OffsetDateTime now = OffsetDateTime.now();
+        ZoneOffset offset = now.getOffset();
+
+        OffsetDateTime startOfDay = now.toLocalDate().atStartOfDay().atOffset(offset);
+        OffsetDateTime endOfDay = now.toLocalDate().atTime(LocalTime.MAX).atOffset(offset);
+
+        given(customerRepository.findByIsDeletedIsTrueAndCreatedAtBetween(startOfDay, endOfDay))
+                .willReturn(List.of(
+                        todayQuitCustomer(1L, "test-1"),
+                        todayQuitCustomer(2L, "test-2")
+                ));
+
+        //when
+        int count = customerService.getDailyCustomerQuitCount();
+
+        //then
+        assertThat(count).isEqualTo(2);
+    }
+
     // -------------------------------------------------
     // Helper
     // -------------------------------------------------
@@ -194,6 +217,17 @@ class CustomerServiceTest {
         entity.setCustomerName(name);
         entity.setGrade(CustomerGrade.BASIC);
         entity.setCreatedAt(OffsetDateTime.now());
+        entity.setDeleted(false);
+        return entity;
+    }
+
+    private CustomerEntity todayQuitCustomer(Long id, String name) {
+        CustomerEntity entity = new CustomerEntity();
+        entity.setCustomerId(id);
+        entity.setCustomerName(name);
+        entity.setGrade(CustomerGrade.BASIC);
+        entity.setCreatedAt(OffsetDateTime.now());
+        entity.setDeleted(true);
         return entity;
     }
 }

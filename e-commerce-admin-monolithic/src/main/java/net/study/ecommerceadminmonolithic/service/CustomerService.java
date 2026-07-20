@@ -39,6 +39,12 @@ public class CustomerService {
         return customerRepository.findByCreatedAtBetween(today.a, today.b).size();
     }
 
+
+    public int getDailyCustomerQuitCount() {
+        Pair<OffsetDateTime, OffsetDateTime> today = getStartAndEndDateTime();
+        return customerRepository.findByIsDeletedIsTrueAndCreatedAtBetween(today.a, today.b).size();
+    }
+
     private Pair<OffsetDateTime, OffsetDateTime> getStartAndEndDateTime() {
         OffsetDateTime now = OffsetDateTime.now();
         ZoneOffset offset = now.getOffset();
