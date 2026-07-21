@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js';
 import CardBasic from '../../Cards/Basic';
 
-class ChartDonut extends Component {
-  chartRef = React.createRef<HTMLCanvasElement>();
+const ChartDonut = () => {
+  const chartRef = useRef<HTMLCanvasElement>(null);
 
-  componentDidMount() {
-    const ctx = this.chartRef.current?.getContext('2d');
+  useEffect(() => {
+    const ctx = chartRef.current?.getContext('2d');
     if (!ctx) return;
 
-    new Chart(ctx, {
+    const chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: ['Direct', 'Referral', 'Social'],
@@ -34,23 +34,30 @@ class ChartDonut extends Component {
           displayColors: false,
           caretPadding: 10,
         },
-        legend: { display: false },
+        legend: {
+          display: false,
+        },
         cutoutPercentage: 80,
       },
     });
-  }
 
-  render() {
-    return (
+    return () => {
+      chart.destroy();
+    };
+  }, []);
+
+  return (
       <CardBasic title="Donut Chart">
         <div className="chart-pie pt-4">
-          <canvas id="myPieChart" ref={this.chartRef}></canvas>
+          <canvas id="myPieChart" ref={chartRef}></canvas>
         </div>
+
         <hr />
-        Styling for the donut chart can be found in the <code>/Components/Charts/Donut/index.js</code> file.
+
+        Styling for the donut chart can be found in the{' '}
+        <code>/Components/Charts/Donut/index.js</code> file.
       </CardBasic>
-    );
-  }
-}
+  );
+};
 
 export default ChartDonut;
