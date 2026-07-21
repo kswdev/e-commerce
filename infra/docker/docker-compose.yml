@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  grafana:
+    user: "root"
+    image: grafana/grafana
+    container_name: grafana_container
+    ports:
+      - "3030:3000"
+    volumes:
+      - ./grafana/volume:/var/lib/grafana

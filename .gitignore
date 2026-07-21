@@ -39,6 +39,7 @@ yarn-error.log*
 
 # docker
 e-commerce-admin-monolithic/docker/data
+infra/docker/grafana
 
 # npm
 sb-admin-2-react/dist/
